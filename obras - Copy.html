@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Jordi W. Saladrigas — Selected Works</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="brand">JORDI W. SALADRIGAS <small>Artist</small></div>
+    <nav class="menu">
+      <a href="index.html">Home</a>
+      <a href="bio.html">Bio</a>
+      <a class="active" href="obras.html">Selected Works</a>
+      <a href="exhibitions.html">Exhibitions</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="section">
+    <h2>Selected Works</h2>
+    <div id="grid" class="grid"></div>
+    <p class="more-link"><a href="works-all.html">View all works →</a></p>
+  </section>
+</main>
+
+<dialog id="lb" onclick="if(event.target===this)this.close()">
+  <button class="close" onclick="document.getElementById('lb').close()">Close</button>
+  <div class="lightbox"><img id="lbimg" alt=""/></div>
+</dialog>
+
+<footer>
+  <div class="wrap">© <span id="y"></span> Jordi W. Saladrigas</div>
+</footer>
+
+<script>
+document.getElementById("y").textContent = new Date().getFullYear();
+
+function openLightbox(img){
+  const lb=document.getElementById("lb");
+  const lbimg=document.getElementById("lbimg");
+  lbimg.src=img.src;
+  lbimg.alt=img.alt||"";
+  lb.showModal();
+}
+
+async function loadTitles(){
+  try { return await (await fetch("titles.json", {cache:"no-store"})).json(); }
+  catch(e){ return {}; }
+}
+
+function makeTile(file, titleText){
+  const fig = document.createElement("figure");
+  fig.className = "tile";
+
+  const img = document.createElement("img");
+  img.src = "assets/" + file;
+  img.loading = "lazy";
+  img.alt = titleText || "";
+  img.title = titleText || "";
+  img.onclick = () => openLightbox(img);
+  img.onerror = () => fig.remove();
+
+  const cap = document.createElement("figcaption");
+  cap.className = "cap";
+  cap.textContent = titleText || "";
+
+  fig.appendChild(img);
+  fig.appendChild(cap);
+  return fig;
+}
+
+(async function(){
+  const titles = await loadTitles();
+  const grid = document.getElementById("grid");
+
+  // Selected Works: try work01..work40 and let missing ones auto-remove.
+  for(let i=1;i<=40;i++){
+    const n = String(i).padStart(2,"0");
+    const file = `work${n}.jpg`;
+    const title = (titles[file] || "").trim();
+    grid.appendChild(makeTile(file, title));
+  }
+})();
+</script>
+</body>
+</html>

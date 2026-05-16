@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Jordi W. Saladrigas — Press</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <div class="brand">JORDI W. SALADRIGAS <small>Artist</small></div>
+    <nav class="menu">
+      <a href="index.html">Home</a>
+      <a href="bio.html">Bio</a>
+      <a href="works-all.html">Works</a>
+      <a class="active" href="press.html">Press</a>
+      <a href="exhibitions.html">Exhibitions</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="section">
+    <h2>Press</h2>
+    <div id="grid" class="grid"></div>
+    <p class="lead" style="margin-top:14px;">
+      Press clippings and documentation.
+    </p>
+  </section>
+</main>
+
+<dialog id="lb" onclick="if(event.target===this)this.close()">
+  <button class="close" onclick="document.getElementById('lb').close()">Close</button>
+  <div class="lightbox"><img id="lbimg" alt=""/></div>
+</dialog>
+
+<footer>
+  <div class="wrap">© <span id="y"></span> Jordi W. Saladrigas</div>
+</footer>
+
+<script>
+document.getElementById("y").textContent = new Date().getFullYear();
+
+function openLightbox(img){
+  const lb=document.getElementById("lb");
+  const lbimg=document.getElementById("lbimg");
+  lbimg.src=img.src;
+  lbimg.alt=img.alt||"";
+  lb.showModal();
+}
+
+function makeTile(src){
+  const fig = document.createElement("figure");
+  fig.className = "tile";
+
+  const img = document.createElement("img");
+  img.src = src;
+  img.loading = "lazy";
+  img.onclick = () => openLightbox(img);
+  img.onerror = () => fig.remove();
+
+  fig.appendChild(img);
+  return fig;
+}
+
+(async function(){
+  const grid = document.getElementById("grid");
+
+  // IMPORTANT: static sites cannot list folder contents automatically.
+  // This page will show "whatever is there" IF you use a simple naming pattern: press01.jpg, press02.jpg, ...
+  // It also tries .jpeg and .png.
+  const exts = [".jpg", ".jpeg", ".png"];
+  for(let i=1;i<=200;i++){
+    const n = String(i).padStart(2,"0");
+    for(const ext of exts){
+      grid.appendChild(makeTile(`press/press${n}${ext}`));
+    }
+  }
+})();
+</script>
+</body>
+</html>

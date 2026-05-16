@@ -1,0 +1,17 @@
+# Redirect www -> non-www
+www.jordiwsaladrigas.com {
+	redir https://jordiwsaladrigas.com{uri} permanent
+}
+
+# Main site (HTTPS will be automatic once ports 80/443 reach Caddy)
+jordiwsaladrigas.com {
+	root * /srv
+	encode zstd gzip
+	file_server
+}
+
+# Optional: allow LAN access by IP without HTTPS
+http://192.168.1.162 {
+	root * /srv
+	file_server
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Jordi W. Saladrigas — Home</title>
+<meta content="Home and selected works by Jordi W. Saladrigas." name="description"/>
+<link href="styles.css" rel="stylesheet"/>
+</head>
+<body>
+<header>
+<div class="wrap nav">
+<div class="brand">JORDI W. SALADRIGAS<small>Artist</small></div>
+<nav class="menu">
+<a class="active" href="index.html">Home</a>
+<a href="bio.html">Bio</a>
+<a href="obras.html">Selected Works</a>
+<a href="exhibitions.html">Exhibitions</a>
+</nav>
+</div>
+</header>
+<main class="wrap">
+<section class="hero section">
+<div>
+<h1>Jordi W. Saladrigas — Poetics of Found Objects</h1>
+<p class="sub">Jordi W. Saladrigas works with found objects to build evocative compositions. He also draws and paints, and developed part of his career in the Spanish comics scene.</p>
+</div>
+<figure class="hero-figure">
+<img alt="Hero work" loading="eager" src="assets/hero.jpg"/>
+</figure>
+</section>
+<section class="section">
+<h2>Selected Works</h2>
+<p class="sub">Click to enlarge.</p>
+<div class="grid"><figure class="tile"><img alt="Work" loading="lazy" onclick="openLightbox(this)" onerror="this.closest('figure').remove()" src="assets/work01.jpg"/><figcaption class="cap">Work</figcaption></figure><figure class="tile"><img alt="Work" loading="lazy" onclick="openLightbox(this)" onerror="this.closest('figure').remove()" src="assets/work02.jpg"/><figcaption class="cap">Work</figcaption></figure><figure class="tile"><img alt="Work" loading="lazy" onclick="openLightbox(this)" onerror="this.closest('figure').remove()" src="assets/work03.jpg"/><figcaption class="cap">Work</figcaption></figure><figure class="tile"><img alt="Work" loading="lazy" onclick="openLightbox(this)" onerror="this.closest('figure').remove()" src="assets/work04.jpg"/><figcaption class="cap">Work</figcaption></figure><figure class="tile"><img alt="Work" loading="lazy" onclick="openLightbox(this)" onerror="this.closest('figure').remove()" src="assets/work05.jpg"/><figcaption class="cap">Work</figcaption></figure><figure class="tile"><img alt="Work" loading="lazy" onclick="openLightbox(this)" onerror="this.closest('figure').remove()" src="assets/work06.jpg"/><figcaption class="cap">Work</figcaption></figure><figure class="tile"><img alt="Work" loading="lazy" onclick="openLightbox(this)" onerror="this.closest('figure').remove()" src="assets/work07.jpg"/><figcaption class="cap">Work</figcaption></figure><figure class="tile"><img alt="Work" loading="lazy" onclick="openLightbox(this)" onerror="this.closest('figure').remove()" src="assets/work08.jpg"/><figcaption class="cap">Work</figcaption></figure><figure class="tile"><img alt="Work" loading="lazy" onclick="openLightbox(this)" onerror="this.closest('figure').remove()" src="assets/work09.jpg"/><figcaption class="cap">Work</figcaption></figure></div>
+</section>
+</main>
+<footer><div class="wrap">© <span id="y"></span> Jordi W. Saladrigas. All rights reserved.</div></footer>
+<dialog id="lb" onclick="if(event.target===this)this.close()">
+<button class="close" onclick="document.getElementById('lb').close()">Close</button>
+<div class="lightbox"><img alt="Work" id="lbimg"/></div>
+</dialog>
+<script>document.getElementById('y').textContent=new Date().getFullYear();
+    function openLightbox(img){ const lb=document.getElementById('lb'); const lbimg=document.getElementById('lbimg'); lbimg.src=img.src; lbimg.alt=img.alt; lb.showModal(); }
+  </script>
+</body>
+</html>
