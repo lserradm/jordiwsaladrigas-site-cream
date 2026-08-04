@@ -1,0 +1,14 @@
+.drawings-grid {
+  align-items: start;
+}
+
+.drawing-tile {
+  margin: 0;
+}
+
+.drawing-tile img {
+  aspect-ratio: auto;
+  min-height: 0;
+  padding: 10px;
+  background: #080808;
+}

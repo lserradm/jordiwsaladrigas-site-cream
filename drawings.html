@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Jordi W. Saladrigas — Drawings</title>
+  <link rel="stylesheet" href="styles.css?v=drawings-1980s-1">
+  <link rel="stylesheet" href="drawings.css?v=drawings-1980s-1">
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html">JORDI W. SALADRIGAS<small>Artist</small></a>
+      <nav class="menu">
+        <a href="index.html">Home</a>
+        <a href="bio.html">Bio</a>
+        <a href="selected-works.html">Works</a>
+        <a href="drawings.html" class="active">Drawings</a>
+        <a href="exhibitions.html">Exhibitions</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="section">
+      <div class="section-head"><div><h1>Drawings</h1><p class="sub">A selection of drawings from the 1980s.</p></div></div>
+      <div class="grid drawings-grid" id="drawings-grid"></div>
+    </section>
+    <dialog id="lb" onclick="if(event.target===this)this.close()">
+      <button class="close" onclick="this.closest('dialog').close()">Close</button>
+      <div class="lightbox"><img id="lbimg" alt="Drawing"></div>
+    </dialog>
+  </main>
+  <footer><div class="wrap">© <span id="y"></span> Jordi W. Saladrigas. All rights reserved.</div></footer>
+  <script>
+    const drawings=['drawing-002.jpg','drawing-004.jpg','drawing-005.jpg','drawing-007.jpg','drawing-008.jpg','drawing-010.jpg','drawing-011.jpg','drawing-012.jpg','drawing-014.jpg','drawing-019.jpg','drawing-020.jpg','drawing-021.jpg','drawing-023.jpg','drawing-024.jpg','drawing-026.jpg','drawing-028.jpg','drawing-029.jpg','drawing-031.jpg','drawing-032.jpg','drawing-034.jpg','drawing-035.jpg','drawing-037.jpg','drawing-038.jpg','drawing-041.jpg','drawing-042.jpg','drawing-043.jpg','drawing-044.jpg','drawing-046.jpg','drawing-047.jpg','drawing-049.jpg','drawing-050.jpg','drawing-051.jpg','drawing-052.jpg','drawing-053.jpg','drawing-054.jpg','drawing-055.jpg','drawing-056.jpg','drawing-058.jpg','drawing-059.jpg','drawing-060.jpg','drawing-063.jpg','drawing-064.jpg','drawing-065.jpg','drawing-066.jpg','drawing-069.jpg','drawing-071.jpg','drawing-072.jpg','drawing-073.jpg','drawing-074.jpg','drawing-075.jpg','drawing-076.jpg','drawing-077.jpg','drawing-078.jpg','drawing-079.jpg','drawing-080.jpg','drawing-081.jpg','drawing-082.jpg','drawing-083.jpg','drawing-084.jpg','drawing-085.jpg','drawing-086.jpg','drawing-087.jpg','drawing-088.jpg','drawing-089.jpg','drawing-090.jpg','drawing-091.jpg','drawing-092.jpg','drawing-093.jpg','drawing-095.jpg','drawing-096.jpg','drawing-097.jpg','drawing-098.jpg','drawing-099.jpg','drawing-100.jpg','drawing-101.jpg','drawing-102.jpg','drawing-104.jpg','drawing-105.jpg','drawing-106.jpg','drawing-107.jpg','drawing-108.jpg','drawing-109.jpg','drawing-110.jpg','drawing-112.jpg','drawing-113.jpg','drawing-116.jpg','drawing-117.jpg','drawing-118.jpg','drawing-119.jpg','drawing-120.jpg','drawing-121.jpg','drawing-122.jpg','drawing-123.jpg','drawing-124.jpg','drawing-125.jpg','drawing-126.jpg','drawing-127.jpg','drawing-128.jpg','drawing-129.jpg','drawing-130.jpg','drawing-132.jpg','drawing-133.jpg','drawing-134.jpg','drawing-135.jpg','drawing-136.jpg','drawing-137.jpg','drawing-138.jpg','drawing-139.jpg','drawing-140.jpg','drawing-141.jpg','drawing-142.jpg','drawing-143.jpg','drawing-144.jpg'];
+    function openLightbox(img){const lb=document.getElementById('lb'),full=document.getElementById('lbimg');full.src=img.src;full.alt=img.alt;lb.showModal()}
+    document.addEventListener('DOMContentLoaded',()=>{const grid=document.getElementById('drawings-grid');drawings.forEach((file,index)=>{const figure=document.createElement('figure');figure.className='tile drawing-tile';const img=document.createElement('img');img.src='assets/drawings-1980s/'+file;img.alt='Drawing '+(index+1);img.loading='lazy';img.decoding='async';img.onclick=()=>openLightbox(img);img.onerror=()=>figure.remove();figure.append(img);grid.append(figure)});document.getElementById('y').textContent=new Date().getFullYear()});
+  </script>
+</body>
+</html>
