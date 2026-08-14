@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>NAVARRO (1982) — Jordi W. Saladrigas</title>
+  <title>Revista CAIRO (1982) — Jordi W. Saladrigas</title>
   <link rel="stylesheet" href="styles.css?v=navarro-1">
   <link rel="stylesheet" href="navarro.css?v=navarro-1">
 </head>
 <body>
   <header><div class="wrap nav"><a class="brand" href="index.html">JORDI W. SALADRIGAS<small>Artist</small></a><nav class="menu"><a href="index.html">Home</a><a href="bio.html">Bio</a><a href="selected-works.html">Works</a><a href="drawings.html" class="active">Drawings</a><a href="exhibitions.html">Exhibitions</a><a href="contact.html">Contact</a></nav></div></header>
   <main class="wrap">
-    <section class="section navarro-head"><a class="back-link" href="drawings.html">← Back to Drawings</a><h1>NAVARRO</h1><p class="sub">1982 · Select a page to view its vignettes.</p></section>
-    <section class="navarro-pages" id="pages" aria-label="NAVARRO pages"></section>
+    <section class="section navarro-head"><a class="back-link" href="drawings.html">← Back to Drawings</a><h1>Revista CAIRO</h1><p class="sub">1982 · Select a page to view its vignettes.</p></section>
+    <section class="navarro-pages" id="pages" aria-label="Revista CAIRO pages"></section>
   </main>
   <dialog id="viewer" aria-label="Vignette viewer">
     <div class="viewer-shell">
@@ -35,11 +35,11 @@
     ];
     const dialog=document.getElementById('viewer'),image=document.getElementById('viewer-image'),caption=document.getElementById('viewer-caption');
     let pageIndex=0,vignetteIndex=0,touchStart=0;
-    function render(){const set=pages[pageIndex],file=set[vignetteIndex];image.src='assets/'+file;image.alt='NAVARRO page '+(pageIndex+1)+', vignette '+(vignetteIndex+1);caption.textContent='PAGE '+(pageIndex+1)+' · '+(set.length===1?'FULL PAGE':'VIGNETTE '+(vignetteIndex+1)+' OF '+set.length)}
+    function render(){const set=pages[pageIndex],file=set[vignetteIndex];image.src='assets/'+file;image.alt='Revista CAIRO page '+(pageIndex+1)+', vignette '+(vignetteIndex+1);caption.textContent='PAGE '+(pageIndex+1)+' · '+(set.length===1?'FULL PAGE':'VIGNETTE '+(vignetteIndex+1)+' OF '+set.length)}
     function openPage(index){pageIndex=index;vignetteIndex=0;render();dialog.showModal()}
     function move(step){const set=pages[pageIndex];vignetteIndex=(vignetteIndex+step+set.length)%set.length;render()}
     const grid=document.getElementById('pages');
-    pages.forEach((set,index)=>{const button=document.createElement('button');button.className='page-tile';button.type='button';button.setAttribute('aria-label','Open page '+(index+1)+', '+set.length+(set.length===1?' view':' vignettes'));const img=document.createElement('img');img.src='assets/navarro-page-'+String(index+1).padStart(2,'0')+'.jpg';img.alt='NAVARRO page '+(index+1);img.loading='lazy';const label=document.createElement('span');label.innerHTML='<strong>PAGE '+(index+1)+'</strong><small>'+(set.length===1?'Full page':set.length+' vignettes')+'</small>';button.append(img,label);button.onclick=()=>openPage(index);grid.append(button)});
+    pages.forEach((set,index)=>{const button=document.createElement('button');button.className='page-tile';button.type='button';button.setAttribute('aria-label','Open page '+(index+1)+', '+set.length+(set.length===1?' view':' vignettes'));const img=document.createElement('img');img.src='assets/navarro-page-'+String(index+1).padStart(2,'0')+'.jpg';img.alt='Revista CAIRO page '+(index+1);img.loading='lazy';const label=document.createElement('span');label.innerHTML='<strong>PAGE '+(index+1)+'</strong><small>'+(set.length===1?'Full page':set.length+' vignettes')+'</small>';button.append(img,label);button.onclick=()=>openPage(index);grid.append(button)});
     document.querySelector('.viewer-prev').onclick=()=>move(-1);document.querySelector('.viewer-next').onclick=()=>move(1);document.querySelector('.viewer-close').onclick=()=>dialog.close();
     dialog.onclick=e=>{if(e.target===dialog)dialog.close()};
     document.addEventListener('keydown',e=>{if(!dialog.open)return;if(e.key==='ArrowLeft')move(-1);if(e.key==='ArrowRight')move(1)});
